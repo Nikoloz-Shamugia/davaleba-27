@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .user {
+            border: 1px solid black;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+            <!-- davaleba #1 -->
+    <button id="button"> hello world</button>
+            <!-- davaleba #2 -->
+    <img src="" alt="">
+            <!-- davaleba #3 -->
+    <input type="text">
+    <button onclick="displayValue()"> click</button>
+    <p ></p>
+            <!-- davaleba #4 -->
+    <p id="sum"></p>
+            <!-- davaleba #5  -->
+    <div>
+        <div id="user-list" class="user">
+            <img id="img1" src=""  alt="">
+            <div id="flex-box">
+                <p id="p1"></p>
+                <span id="span1"></span>
+            </div>
+            <div id="button-wrapper">
+                <button id="btn1"></button>
+                <button id="btn2"></button>
+            </div>
+        </div>
+        <h5 id="E-mail"></h5>
+    </div>
+    <script>
+            // davaleba #1 ( html ფაილში (ჯავასკრიპტით არა) შევქმნათ ღილაკი, ამ ღილაკის კლიკზე წაიშალოს თვითონ ეს ღილაკი ანუ რომ დავკლიკავ ღილაკზე გაქრეს  გამოიყენეთ ეს მეთოდი remove())
+        const button = document.querySelector('button')
+        button.addEventListener('click' , () => {
+            button.remove()
+        })
+            // davaleba #2 (ჯავასკრიპტით შევქმნათ img tag რომელსაც src ად მივანიჭებთ ამ: https://www.simplilearn.com/ice9/free_resources_article_thumb/Become_a_Front_End_Developer.jpg სურათის ლინკს და ეს შექმნილი img ჩავსვათ body ში (ჯავასკრიპტით).გამოიყენეთ ეს მეთოდი setAttribute() https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+        const img = document.createElement('img');
+        img.setAttribute('src', 'images/javascript-img.avif');
+        let body = document.getElementsByTagName('body')[0];
+        body.appendChild(img);
+            // davaleba #3(დაამატეთ ერთი ინფუთი და ღილაკი , რა ინფორმაციასაც  შეიყვანთ ინფუთის ველში, ღილაკზე დაჭერისას ქვემოთ p ტეგში  გამოიტანეთ ინფუთის მნიშვნელობა , ყოველი ახალი დამატებული ელემენტი დაამატეთ მასივში.გამოიყენეთ ეს მეთოდი https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)
+        function displayValue(){
+            let input = document.querySelector('input').value
+            let p = document.querySelector('p')
+            p.textContent = input
+        }
+            // davaleba #4(დავწეროთ ფუნქცია, რომელიც დაგვიბრუნებს არგუმენტად მიღებული ხარჯების ჯამს ფუნქციას არგუმენტად გადაეცით  მასივი - productData და დათვალეთ გადაცემული მასივში amount ის ჯამი const productData = [{product_id: 1, amount: 200}, { product_id: 2, amount: 300 }, { product_id:3, amount: 500 }]  დაბრუნებული ჯამის მნიშნელობა გამოიტანეთ p ტეგის მნიშნელობაში)
+        const productData = [
+            { product_id: 1, amount: 200 },
+            { product_id: 2, amount: 300 },
+            { product_id: 3, amount: 500 }
+        ];
+        function getSum (array){
+            let sum = 0
+            for(i = 0 ; i < array.length ; i++){
+                sum += array[i].amount
+            }
+            return sum
+        } ;
+        let totalCost = getSum(productData) ;
+        let p = document.getElementById('sum') ;
+        p.textContent = totalCost ;
+            // davaleba #5
+            const users = [
+                {
+                id: 7,
+                email: "michael.lawson@reqres.in",
+                first_name: "Michael",
+                last_name: "Lawson",
+                avatar: 'images/pfp.jpg'
+                },
+                {
+                id: 8,
+                email: "lindsay.ferguson@reqres.in",
+                first_name: "Lindsay",
+                last_name: "Ferguson",
+                avatar: 'images/pfp.jpg'
+                },
+                {
+                id: 9,
+                email: "tobias.funke@reqres.in",
+                first_name: "Tobias",
+                last_name: "Funke",
+                avatar: 'images/pfp.jpg'
+                },
+                {
+                id: 10,
+                email: "byron.fields@reqres.in",
+                first_name: "Byron",
+                last_name: "Fields",
+                avatar: 'images/pfp.jpg'
+                },
+                {
+                id: 11,
+                email: "george.edwards@reqres.in",
+                first_name: "George",
+                last_name: "Edwards",
+                avatar: 'images/pfp.jpg'
+                },
+                {
+                id: 12,
+                email: "rachel.howell@reqres.in",
+                first_name: "Rachel",
+                last_name: "Howell",
+                avatar: 'images/pfp.jpg'
+                }
+            ];
+            // 1
+            const image1  = document.getElementById('img1')
+            image1.setAttribute('src' , users[0].avatar)
+
+            const p1 = document.getElementById('p1')
+            p1.textContent = users[0].first_name
+
+            const span1 = document.getElementById('span1')
+            span1.textContent = users[0].last_name
+
+            const div = document.getElementById('user-list')
+            div.style.padding = ('20px 15px')
+            div.appendChild( span1  , p1  , image1 )
+            div.style.width = '215px'
+
+            const childDiv = document.getElementById('flex-box')
+            childDiv.append(p1 , span1)
+            childDiv.style.display = "flex";
+            childDiv.style.alignItems = 'center';
+            childDiv.style.justifyContent = 'space-around'
+
+            const btn1 = document.getElementById('btn1')
+            btn1.textContent = ('წაშლა')
+            const btn2 = document.getElementById('btn2')
+            btn2.textContent = ('ინფო')
+
+            const btnWrapper = document.getElementById('button-wrapper')
+            btnWrapper.style.display = 'flex'
+            btnWrapper.style.alignItems = 'center'
+            btnWrapper.style.justifyContent ='space-between'
+
+            btn2.addEventListener('click' ,() =>{
+                let h5 = document.getElementById('E-mail')
+                h5.textContent = users[0].email
+            } )
+            btn1.addEventListener('click' , () =>{
+                div.remove()
+            })
+    </script>
+</body>
+</html>
